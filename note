@@ -43,6 +43,12 @@ delete()
 	rm $NOTEDIR/$1
 }
 
+install()
+{
+	sudo cp $0 /usr/local/bin/$0
+	echo "note installed!"
+}
+
 #Start
 init
 
@@ -64,6 +70,9 @@ case "$1" in
 		;;
 	del)
 		delete $2
+		;;
+	install)
+		install
 		;;
 	*)
 		usage
