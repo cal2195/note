@@ -1,0 +1,70 @@
+#!/bin/bash
+
+NOTEDIR=~/.notes
+
+usage()
+{
+	echo "Usage coming soon!"
+	exit 1
+}
+
+init()
+{
+	mkdir -p $NOTEDIR
+}
+
+save()
+{
+	echo "${@:3}" > $NOTEDIR/$2
+}
+
+list()
+{
+	ls $NOTEDIR
+}
+
+show()
+{
+	cat $NOTEDIR/$1
+}
+
+edit()
+{
+	nano $NOTEDIR/$1
+}
+
+run()
+{
+	source $NOTEDIR/$1
+}
+
+delete()
+{
+	rm $NOTEDIR/$1
+}
+
+#Start
+init
+
+case "$1" in
+	ls)
+		list
+		;;
+	echo)
+		show $2
+		;;
+	save)
+		save $@
+		;;
+	edit)
+		edit $2
+		;;
+	run)
+		run $2
+		;;
+	del)
+		delete $2
+		;;
+	*)
+		usage
+esac
