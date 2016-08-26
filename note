@@ -4,7 +4,20 @@ NOTEDIR=~/.notes
 
 usage()
 {
-	echo "Usage coming soon!"
+	echo "Usage: $0 [COMMAND] [NOTE] [TEXT]"
+	echo "A little command line note application"
+	echo ""
+	echo "Commands:"
+	echo "	ls                  List all the saved notes"
+	echo "	echo [NOTE]         Echo out a note"
+	echo "	save [NOTE] [TEXT]  Save a note"
+	echo "	edit [NOTE]         Open the note in an editor"
+	echo "	run [NOTE]          Run the contents of a note as a command"
+	echo "	del [NOTE]          Delete the note"
+	echo ""
+	echo "	install             Install note and tab completion files"
+	echo ""
+	echo "See https://github.com/cal2195/note for more information!"
 	exit 1
 }
 
@@ -73,7 +86,7 @@ install_completion()
         COMPREPLY=( $(compgen -W "$(ls ~/.notes)" -- ${cur}) )
         return 0
 	fi
-    
+
 }
 complete -F _note note' > /etc/bash_completion.d/note
 }
